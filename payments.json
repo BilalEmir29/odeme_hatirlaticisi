@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Elektrik faturasi",
+    "amount": 850,
+    "date": "2026-08-28",
+    "repeat": "monthly"
+  },
+  {
+    "name": "Kredi karti son odeme",
+    "amount": 3200,
+    "date": "2026-09-05",
+    "repeat": "monthly"
+  }
+]

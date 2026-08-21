@@ -1,0 +1,28 @@
+name: Odeme SMS Kontrolu
+
+on:
+  schedule:
+    # Her gun 07:00 Turkiye saatinde calisir (UTC 04:00)
+    - cron: '0 4 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repoyu indir
+        uses: actions/checkout@v4
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Odemeleri kontrol et ve gerekirse SMS gonder
+        env:
+          NETGSM_USERCODE: ${{ secrets.NETGSM_USERCODE }}
+          NETGSM_PASSWORD: ${{ secrets.NETGSM_PASSWORD }}
+          NETGSM_MSGHEADER: ${{ secrets.NETGSM_MSGHEADER }}
+          PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+          REMINDER_DAYS: '3'
+        run: node check-payments.js
